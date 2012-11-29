@@ -1,8 +1,8 @@
 {
  ;; directory setting
- :public-dir   "./"
+ :public-dir   "public/"
  :tag-out-dir  "tag/"
- :template-dir ".template/"
+ :template-dir "template/"
  :post-dir     "posts/"
  :layout-dir   "layouts/"
 
