@@ -182,7 +182,9 @@
  ;; header
  [:div {:id "header-container"}
   [:header {:class "wrapper clearfix"}
-   (link [:h1 {:id "title"} (:site-title site)] "/") [:h3 {:id "subtitle"} (:site-subtitle site) ]]]
+   (link [:h1 {:id "title"} (:site-title site)] "/")
+   ;[:h3 {:id "subtitle"} (:site-subtitle site) ]
+   ]]
 
  ;; main container
  [:div {:id "main-container"}

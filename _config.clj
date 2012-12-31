@@ -1,6 +1,6 @@
 {
  ;; directory setting
- :public-dir   "public/"
+ :public-dir   "../ponkore.github.com/"
  :tag-out-dir  "tag/"
  :template-dir "template/"
  :post-dir     "posts/"
@@ -23,7 +23,7 @@
 
  ;; default site data
  :site {:charset    "utf-8"
-        :site-title "Challenge and Change!!"
+        :site-title "(カッコの中の小人)"
         :site-subtitle "主にProgrammingなネタ集です。"
         :site-meta-description "This is @ponkore's blog"
         :site-meta-author "@ponkore"
@@ -51,10 +51,10 @@
 
  ;; post setting
  ;;   default value: #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)$"
-; :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)\.html.clj$"
-; :post-filename-format "{{year}}-{{month}}/{{filename}}/index.html"
- :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)$"
- :post-filename-format "{{year}}-{{month}}/{{filename}}"
+ :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)\.html.clj$"
+ :post-filename-format "{{year}}-{{month}}/{{filename}}/index.html.html" ; this is dirty hack...
+; :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)$"
+; :post-filename-format "{{year}}-{{month}}/{{filename}}"
 
  ;; post sort type (:date :name :title :date-desc :name-desc :title-desc)
  ;;   default value: :date-desc
