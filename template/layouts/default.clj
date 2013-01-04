@@ -153,6 +153,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [:head
  [:meta {:charset (:charset site)}]
+ [:title (if (= (:title site) "home")
+           (:site-title site)
+           (str (:site-title site) " - " (:title site)))]
+ [:link {:rel "alternate" :type "application/atom-xml" :title (:title site) :href "/atom.xml"}]
  [:meta {:name "viewport" :content "width=device-width"}]
  [:meta {:http-equiv "Content-Language" :content "ja"}]
  [:meta {:http-equiv "Content-Type" :content "text/html; charset=UTF-8"}]
@@ -160,16 +164,7 @@
  [:meta {:name "description" :content (:site-meta-description site)}]
  [:meta {:name "author" :content (:site-meta-author site)}]
 
- [:title (if (= (:title site) "home")
-           (:site-title site)
-           (str (:site-title site) " - " (:title site)))]
-
- [:link {:rel   "shortcut icon"
-         :href  "/favicon.ico"}]
- [:link {:href  "/atom.xml"
-         :rel   "alternate"
-         :title (:title site)
-         :type  "application/atom-xml"}]
+ [:link {:rel "shortcut icon" :href "/favicon.ico"}]
 
  (absolute-css ["/css/style.css" "/css/sunburst.css" (:css site ())])
  (absolute-css {:media "only screen and (max-device-width:480px)"} (:device-css site))
