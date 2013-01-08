@@ -52,7 +52,7 @@
  ;; post setting
  ;;   default value: #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)$"
  :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)\.html.clj$"
- :post-filename-format "{{year}}-{{month}}/{{filename}}/index.html.html" ; this is dirty hack...
+ :post-filename-format "{{year}}-{{month}}/{{filename}}/index.html"
 ; :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)$"
 ; :post-filename-format "{{year}}-{{month}}/{{filename}}"
 
