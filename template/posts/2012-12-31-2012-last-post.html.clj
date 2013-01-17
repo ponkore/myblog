@@ -34,7 +34,7 @@
 [:h3 "2012/07/28 Clojure Programming お菓子会"]
 (p "[Clojure Programming お菓子会](http://atnd.org/events/30330) に参加しました。このときは、一応自分で何か発表しようと思い、事前に自分が２章を担当すると宣言して、へたくそながらも資料を作って発表しました。")
 
-"<iframe src=\"http://www.slideshare.net/slideshow/embed_code/13782976\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px\" allowfullscreen> </iframe> <div style=\"margin-bottom:5px\"> <strong> <a href=\"http://www.slideshare.net/masa0kato/clojure-programmingchapter2-13782976\" title=\"Clojure programming-chapter-2\" target=\"_blank\">Clojure programming-chapter-2</a> </strong> from <strong><a href=\"http://www.slideshare.net/masa0kato\" target=\"_blank\">Masao Kato</a></strong> </div>"
+(slideshare "13782976")
 
 (p "このときは確か参加者が少なく(6名位？)、あまり緊張もしませんでしたが、「なんか貢献したかな？」というちょっとだけハテナがつくものの実績を作っておいてよかったと思っています。やっぱり勉強会は発表したほうが自分の成長にもつながるわけですし。")
 

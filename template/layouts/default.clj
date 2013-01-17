@@ -149,25 +149,42 @@
     [:script {:src (str "https://gist.github.com/" gistno ".js?file=" filename) }]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Slideshare
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn slideshare [embed-code]
+  [:iframe {:src (str "http://www.slideshare.net/slideshow/embed_code/" embed-code)
+            :width "427" :height "356"
+            :style "border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px"
+            :allowfullscreen true
+            }])
+;; "<iframe src=\"http://www.slideshare.net/slideshow/embed_code/13782976\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px\" allowfullscreen> </iframe> <div style=\"margin-bottom:5px\"> <strong> <a href=\"http://www.slideshare.net/masa0kato/clojure-programmingchapter2-13782976\" title=\"Clojure programming-chapter-2\" target=\"_blank\">Clojure programming-chapter-2</a> </strong> from <strong><a href=\"http://www.slideshare.net/masa0kato\" target=\"_blank\">Masao Kato</a></strong> </div>"
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Main layout starts here.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [:head
  [:meta {:charset (:charset site)}]
+ [:meta {:http-equiv "Content-Language" :content "ja"}]
+ [:meta {:http-equiv "Content-Type" :content "text/html; charset=UTF-8"}]
+ [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
  [:title (if (= (:title site) "home")
            (:site-title site)
            (str (:site-title site) " - " (:title site)))]
  [:link {:rel "alternate" :type "application/atom-xml" :title (:title site) :href "/atom.xml"}]
- [:meta {:name "viewport" :content "width=device-width"}]
- [:meta {:http-equiv "Content-Language" :content "ja"}]
- [:meta {:http-equiv "Content-Type" :content "text/html; charset=UTF-8"}]
- [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
  [:meta {:name "description" :content (:site-meta-description site)}]
+ [:meta {:name "viewport" :content "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"}]
+ [:meta {:name "HandheldFriendly" :content "True"}]
+ [:meta {:name "MobileOptimized" :content "320"}]
  [:meta {:name "author" :content (:site-meta-author site)}]
 
  [:link {:rel "shortcut icon" :href "/favicon.ico"}]
 
- (absolute-css ["/css/style.css" "/css/sunburst.css" (:css site ())])
- (absolute-css {:media "only screen and (max-device-width:480px)"} (:device-css site))
+ [:link {:rel "stylesheet" :href "http://css.ink.sapo.pt/v1/css/ink.css"}]
+ (absolute-css ["/css/sunburst.css" (:css site ())])
+
+; (absolute-css ["/css/style.css" "/css/sunburst.css" (:css site ())])
+; (absolute-css {:media "only screen and (max-device-width:480px)"} (:device-css site))
 
  (js "/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
      "http://platform.tumblr.com/v1/share.js")
@@ -175,21 +192,20 @@
 
 [:body
  ;; header
- [:div {:id "header-container"}
-  [:header {:class "wrapper clearfix"}
-   (link [:h1 {:id "title"} (:site-title site)] "/")
-   ;[:h3 {:id "subtitle"} (:site-subtitle site) ]
+ [:header {:class "ink-container"}
+  [:div {:class "ink-vspace"}
+   [:h3 {:id "title"} (:site-title site)]
+   ; "/" [:h3 {:id "subtitle"} (:site-subtitle site) ]
    ]]
 
  ;; main container
- [:div {:id "main-container"}
-  [:div {:id "main" :class "wrapper clearfix"}
-   contents      ;; main contents
-   (_aside site) ;; sidebar (right side bar)
-   ]]
+ [:div {:class "ink-container ink-vspace"}
+  contents ;; main contents
+  ;;   (_aside site) ;; sidebar (right side bar)
+  ]
 
- [:div {:id "footer-container"}
-  [:footer {:class "wrapper clearfix"}
+ [:footer
+  [:div {:class "ink-container"}
    [:div {:style "float:right;" } (misaki-banner)]]]
 
  (absolute-js ["/js/prettify.js"
