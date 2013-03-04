@@ -3,14 +3,13 @@
 
 [:article
  ;; page header
- [:page-header
-  [:div {:class "page-header"}
-   ;; title
-   [:h2 (link (:title site) "#")]
-   ;; post date and tags
-   [:div {:class "tag-and-date"}
-    [:p {:class "date"} (-> site :date my-date->string)] ; (post-date)
-    (post-tags)]]]
+ [:div {:class "page-header"}
+  ;; title
+  [:h3 (link (:title site) "#")]
+  ;; post date and tags
+  [:div {:class "tag-and-date"}
+   [:p {:class "date"} (-> site :date my-date->string)] ; (post-date)
+   (post-tags)]]
 
  ;; contents
  [:div {:class "post"} contents]
