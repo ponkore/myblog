@@ -32,7 +32,7 @@
             (link (:title %) (:url %))))]
     (ul list-fn (:posts site))))
 
-;;; sidebar
+;;; sidebar (一旦やめてしまおう...)
 (defn _aside
   [site]
   [:aside {:class "aside clearfix"}
@@ -180,11 +180,7 @@
 
  [:link {:rel "shortcut icon" :href "/favicon.ico"}]
 
- [:link {:rel "stylesheet" :href "http://css.ink.sapo.pt/v1/css/ink.css"}]
- (absolute-css ["/css/sunburst.css" (:css site ())])
-
-; (absolute-css ["/css/style.css" "/css/sunburst.css" (:css site ())])
-; (absolute-css {:media "only screen and (max-device-width:480px)"} (:device-css site))
+ (css [(:css site ())])
 
  (js "/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
      "http://platform.tumblr.com/v1/share.js")
@@ -195,7 +191,16 @@
  [:header {:class "ink-container"}
   [:div {:class "ink-vspace"}
    [:h3 {:id "title"} (:site-title site)]
-   ; "/" [:h3 {:id "subtitle"} (:site-subtitle site) ]
+   ]]
+ ;; menu
+ [:nav {:class "ink-container ink-navigation"}
+  [:ul {:class "horizontal menu"}
+   [:li {:class "active"}
+    [:a {:href "#"}
+     "Home"]]
+   [:li
+    [:a {:href "#"}
+     "About me"]]
    ]]
 
  ;; main container
