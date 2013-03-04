@@ -31,8 +31,10 @@
         :twitter    "ponkore"
         :disqus-shortname "ponkoresblog"
         :profile-text "Programmingが好きなおっさんSE。最近特にClojureがイイ。時折マイコンでも遊んでみたり。おっさんだけど人生まだこれからだ。"
-        :css ["/css/main.css"]
-        :device-css ["/css/smartphone.css"]
+        :css ["/css/main.css"
+              "/css/sunburst.css"
+              "http://css.ink.sapo.pt/v1/css/ink.css"]
+;        :device-css ["/css/smartphone.css"]
         :js [ ; "/js/main.js"
              "js/lang-clj.js"
              "js/lang-css.js"
