@@ -2,5 +2,10 @@
 ; @layout  default
 ; @title   home
 
-[:article
- (my-post-list site :with-summary true)]
+(my-post-list site :with-summary true)
+
+(if-let [url (:prev-page site)]
+  (link "previous page" url))
+
+(if-let [url (:next-page site)]
+  (link "next page" url))
