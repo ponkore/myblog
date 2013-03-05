@@ -2,7 +2,7 @@
 ; @layout  default
 ; @title   home
 
-(my-post-list site :with-summary true)
+(my-post-list site)
 
 (if-let [url (:prev-page site)]
   (link "previous page" url))
