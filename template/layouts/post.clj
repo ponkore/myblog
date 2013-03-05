@@ -20,5 +20,4 @@
  ;; disqus comment
  [:div {:class "clearfix"} (disqus-comment site)]
 
- (js "http://embedtweet.com/javascripts/embed_v2.js")
 ]
