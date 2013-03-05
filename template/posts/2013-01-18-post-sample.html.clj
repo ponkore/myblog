@@ -4,7 +4,7 @@
 
 (p (:summary (meta contents)))
 
-[:h2 "clojure"]
+[:h3 "clojure"]
 #-CLJ
 ; CLJ
 (defn fact[n]
@@ -21,7 +21,7 @@ CLJ
 CLOJURE
 
 
-[:h2 "lisp"]
+[:h3 "lisp"]
 #-LISP
 ; LISP
 (defun fact (n)
@@ -31,73 +31,7 @@ CLOJURE
 LISP
 
 
-[:h2 "scala"]
-#-SCALA
-// http://d.hatena.ne.jp/xuwei/20120515/1337065445 (https://gist.github.com/2699263) でテスト
-// Inversefizzbuzz
-// http://www.jasq.org/2/post/2012/05/inverse-fizzbuzz.html
-//
-// fork from https://gist.github.com/2699068
-object InverseFizzbuzz extends App {
-
-  def zzubzzif(pattern:Seq[String]) = {
-    def fizzbuzz(n:Int) = (n%3, n%5) match{
-      case (0,0) => "fizzbuzz"
-      case (0,_) => "fizz"
-      case (_,0) => "buzz"
-      case _ => ""
-    }
-
-    val n = Stream.from(0).map(fizzbuzz).indexOfSlice(pattern)
-    (n until (pattern.size + n)) toList
-  }
-
-  def _p(s:Seq[String]) = {
-    println("pattern : %s" format (s.map{s => s.mkString("'", "", "'")}))
-    println(zzubzzif(s))
-    println("")
-  }
-
-  _p(Seq("fizz"))
-  _p(Seq("buzz"))
-  _p(Seq("fizz","","buzz"))
-  _p(Seq("fizz","buzz"))
-  _p(Seq("buzz","fizz"))
-  _p(Seq("fizz","","buzz","fizz"))
-  _p(Seq("fizz","","","fizz"))
-  _p(Seq("fizz","","","fizz","buzz"))
-
-
-  // Result:
-  //
-  // pattern : List('fizz')
-  // List(3)
-  //
-  // pattern : List('buzz')
-  // List(5)
-  //
-  // pattern : List('fizz', '', 'buzz')
-  // List(3, 4, 5)
-  //
-  // pattern : List('fizz', 'buzz')
-  // List(9, 10)
-  //
-  // pattern : List('buzz', 'fizz')
-  // List(5, 6)
-  //
-  // pattern : List('fizz', '', 'buzz', 'fizz')
-  // List(3, 4, 5, 6)
-  //
-  // pattern : List('fizz', '', '', 'fizz')
-  // List(6, 7, 8, 9)
-  //
-  // pattern : List('fizz', '', '', 'fizz', 'buzz')
-  // List(6, 7, 8, 9, 10)
-}
-SCALA
-
-
-[:h2 "sql"]
+[:h3 "sql"]
 #-SQL
 -- SQL
 select
@@ -111,15 +45,7 @@ order by 1
 SQL
 
 
-[:h2 "vb"]
-#-VB
-Private Sub Foo
-   MsgBox "Hello, world"
-End Sub
-VB
-
-
-[:h2 "java"]
+[:h3 "java"]
 #-JAVA
 // JAVA
 public class Foo extends Hoge {
@@ -133,7 +59,7 @@ public class Foo extends Hoge {
 JAVA
 
 
-[:h2 "html"]
+[:h3 "html"]
 #-HTML
 <!-- HTML -->
 <table>
@@ -151,7 +77,7 @@ Hello, <B><I>misaki!</I></B><br>
 HTML
 
 
-[:h2 "css"]
+[:h3 "css"]
 #-CSS
 /* =============================================================================
    HTML5 Boilerplate CSS: h5bp.com/css
@@ -164,7 +90,7 @@ audio:not([controls]) { display: none; }
 CSS
 
 
-[:h2 "shell"]
+[:h3 "shell"]
 #-SH
 
 bash$ cat ./hello.sh
@@ -177,7 +103,7 @@ bash$
 SH
 
 
-[:h2 "ruby"]
+[:h3 "ruby"]
 #-RUBY
 
 module Nendo
