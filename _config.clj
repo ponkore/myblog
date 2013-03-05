@@ -14,7 +14,6 @@
  :url-base     "/"
 
  ;; dev server port
- ;;   default value: 8080
  :port 8080
 
  ;; site language
@@ -35,13 +34,16 @@
               "/css/sunburst.css"
               "http://css.ink.sapo.pt/v1/css/ink.css"]
 ;        :device-css ["/css/smartphone.css"]
-        :js [ ; "/js/main.js"
-             "js/lang-clj.js"
-             "js/lang-css.js"
-             "js/lang-lisp.js"
-             "js/lang-scala.js"
-             "js/lang-sql.js"
-             "js/lang-vb.js"
+        :js ["/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
+             "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+             "/js/lang-clj.js"
+             "/js/lang-css.js"
+             "/js/lang-lisp.js"
+             "/js/lang-sql.js"
+             "/js/prettify.js"
+             "/js/script.js"
+             "http://platform.tumblr.com/v1/share.js"
+             "http://embedtweet.com/javascripts/embed_v2.js"
              ]
         }
 
@@ -52,14 +54,24 @@
  :tag-layout "tag"
 
  ;; post setting
- ;;   default value: #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)$"
  :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)\.html.clj$"
  :post-filename-format "{{year}}-{{month}}/{{filename}}/index.html"
-; :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)$"
-; :post-filename-format "{{year}}-{{month}}/{{filename}}"
+
+ ;; 1ページあたりのポスト数
+ ;;    デフォルト値: nil (ページネーション無効)
+ :posts-per-page 1
+
+ ;; 2ページ目以降のページ分けされたトップページのファイル名フォーマット
+ ;;   デフォルト値: "page{{page}}/{{filename}}"
+ ;;   利用可能な変数:
+ ;;     @page    : ページ番号(1..N)
+ ;;     @filename: ファイル名
+ ;;     @name    : 拡張子抜きのファイル名
+ ;;     @ext     : 拡張子
+ ;; :page-filename-format "page{{page}}/{{filename}}"
+ :page-filename-format "pages/{{page}}/{{filename}}"
 
  ;; post sort type (:date :name :title :date-desc :name-desc :title-desc)
- ;;   default value: :date-desc
  :post-sort-type :date-desc
 
  ;; clojurescript compile options
@@ -74,17 +86,15 @@
  :code-highlight {:CLJ     "lang-clj"
                   :CLOJURE "lang-clj"
                   :LISP    "lang-lisp"
-                  :SCALA   "lang-scala"
                   :SQL     "lang-sql"
-                  :VB      "lang-vb"
                   :CSS     "lang-css"
                   :JAVA    "lang-java"
                   :HTML    "lang-html"
                   :RUBY    "lang-ruby"
-                  :SH      "lang-sh"}
+                  :SH      "lang-sh"
+                  }
 
  ;; flag for detailed log
- ;;   default value: false
  :detailed-log true;false
 
  ;; flag for error notification
@@ -94,19 +104,14 @@
 
  ;; notify setting(OPTIONAL)
  :notify-setting {;; title for fixing notification
-                  ;;  default value: "{{filename}}"
                   :fixed-title  "{{filename}}"
                   ;; message for fixing notication
-                  ;;   default value: "FIXED"
                   :fixed        "FIXED"
                   ;; title for failing notification
-                  ;;   default value: "{{filename}} : {{line}}"
                   :failed-title "{{filename}} : {{line}}"
                   ;; message for failing notification
-                  ;;   default value: {{message}}
                   :failed       "{{message}}"}
 
  ;; compiler setting
- ;;   default value: "default"
  :compiler "default"
- }
+}
