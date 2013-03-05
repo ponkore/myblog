@@ -12,49 +12,13 @@
   [date]
   (if date (.toString date "yyyy-MM-dd")))
 
-;;; my-post-list
-;; とりあえず、各 post のヘッダに @summary を記述する方向にした。
-;; これなら misaki 本体を改造しなくてすむ。
-;; TODO: 記事数が増えてきた場合、next、prev リンクが必要になる。
 (defn my-post-list
   "Make default all posts unordered list."
-  [site & options]
-  (let [list-fn
-        (if options
-          #(list
-            (my-date->string (:date %))
-            "&nbsp;-&nbsp;"
-            (link (:title %) (:url %))
-            "&nbsp;-&nbsp;"
-            (:summary %))
-          #(list
-            (str (my-date->string (:date %)) "&nbsp;-&nbsp;")
-            (link (:title %) (:url %))))]
-    (ul list-fn (:posts site))))
-
-;;; sidebar (一旦やめてしまおう...)
-(defn _aside
   [site]
-  [:aside {:class "aside clearfix"}
-   [:h3 "Profile"]
-   (img "/img/my-icon-64x64.png")
-   [:div {:class "profile-info"}
-    (link {:target "_blank"} (str "@" (:twitter site)) (str "http://twitter.com/" (:twitter site)))
-    (p (:profile-text site))]
-
-   [:h3 "Links"]
-   (ul
-    [(link {:target "_blank"} "Tumblr" "http://tech-pon.tumblr.com")
-     (link {:target "_blank"} "Twitter" (str "http://twitter.com/" (:twitter site)))])
-
-   [:h3 "Tags"]
-   (tag-list)
-
-   [:h3 "Recent Posts"]
-   (my-post-list site)
-
-   [:h3 "Feed"]
-   (link (img "/img/feed/Blue (Custom).png") "/atom.xml")])
+  (let [list-fn
+        #(list (str (my-date->string (:date %)) "&nbsp;-&nbsp;")
+               (link (:title %) (:url %)))]
+    (ul list-fn (:posts site))))
 
 ;;; facebook button
 (defn facebook-like-button
@@ -79,30 +43,29 @@
 (defn tumblr-share-button
   "Tumblr share button"
   [site]
- [:a {:href "http://www.tumblr.com/share"
-      :title "Share on Tumblr"
-      :style "display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;"}
-  ""]) ;;; Share on Tumblr
+  (link {:title "Share on Tumblr"
+         :style "display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;"}
+        "http://www.tumblr.com/share"))
 
 ;;; hatena bookmark button
 (defn hatena-bookmark-button
   [site]
   "hatena bookmark button"
-  (list
-   [:a {:href (str "http://b.hatena.ne.jp/entry/" (:site-url site))
-        :class "hatena-bookmark-button"
-        :data-hatena-bookmark-title (site :title)
-        :data-hatena-bookmark-layout "standard"
-        :title "このエントリーをはてなブックマークに追加"}
-    [:img {:href "http://b.st-hatena.com/images/entry-button/button-only.gif"
-           :alt "このエントリーをはてなブックマークに追加"
-           :width "20"
-           :height "20"
-           :style "border: none;"}]]
+  [:div
+   (link {:class "hatena-bookmark-button"
+          :data-hatena-bookmark-title (site :title)
+          :data-hatena-bookmark-layout "standard"
+          :title "このエントリーをはてなブックマークに追加"}
+         (img {:alt "このエントリーをはてなブックマークに追加"
+               :width "20"
+               :height "20"
+               :style "border: none;"}
+              "http://b.st-hatena.com/images/entry-button/button-only.gif")
+         (str "http://b.hatena.ne.jp/entry/" (:site-url site)))
    [:script {:type "text/javascript"
              :src "http://b.st-hatena.com/js/bookmark_button.js"
              :charset "utf-8"
-             :async "async"}]))
+             :async "async"}]])
 
 ;;; social buttons
 (defn social-buttons
@@ -144,9 +107,7 @@
 ;;; Embed hogehoge
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn gist [gistno & filename]
-  (if (empty? filename)
-    [:script {:src (str "https://gist.github.com/" gistno ".js") }]
-    [:script {:src (str "https://gist.github.com/" gistno ".js?file=" filename) }]))
+  [:script {:src (str "https://gist.github.com/" gistno ".js" (if (empty? filename) "" (str "?file=" filename)))}])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Slideshare
@@ -171,7 +132,7 @@
  [:title (if (= (:title site) "home")
            (:site-title site)
            (str (:site-title site) " - " (:title site)))]
- [:link {:rel "alternate" :type "application/atom-xml" :title (:title site) :href "/atom.xml"}]
+ [:link {:rel "alternate" :type "application/atom+xml" :title (:title site) :href "/atom.xml"}]
  [:meta {:name "description" :content (:site-meta-description site)}]
  [:meta {:name "viewport" :content "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"}]
  [:meta {:name "HandheldFriendly" :content "True"}]
@@ -181,9 +142,6 @@
  [:link {:rel "shortcut icon" :href "/favicon.ico"}]
 
  (css [(:css site ())])
-
- (js "/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
-     "http://platform.tumblr.com/v1/share.js")
 ]
 
 [:body
@@ -192,6 +150,7 @@
   [:div {:class "ink-vspace"}
    [:h3 {:id "title"} (:site-title site)]
    ]]
+
  ;; menu
  [:nav {:class "ink-container ink-navigation"}
   [:ul {:class "horizontal menu"}
@@ -206,15 +165,11 @@
  ;; main container
  [:div {:class "ink-container ink-vspace"}
   contents ;; main contents
-  ;;   (_aside site) ;; sidebar (right side bar)
   ]
 
  [:footer
   [:div {:class "ink-container"}
-   [:div {:style "float:right;" } (misaki-banner)]]]
+   [:div {:style "float:right;"} (misaki-banner)]]]
 
- (absolute-js ["/js/prettify.js"
-               "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
-               "/js/script.js"
-               (:js site ())])
+ (js [(:js site ())])
 ]
