@@ -30,9 +30,9 @@
         :twitter    "ponkore"
         :disqus-shortname "ponkoresblog"
         :profile-text "Programmingが好きなおっさんSE。最近特にClojureがイイ。時折マイコンでも遊んでみたり。おっさんだけど人生まだこれからだ。"
-        :css ["/css/main.css"
-              "/css/sunburst.css"
-              "http://css.ink.sapo.pt/v1/css/ink.css"]
+        :css ["/css/sunburst.css"
+              "http://css.ink.sapo.pt/v1/css/ink.css"
+              "/css/main.css"]
 ;        :device-css ["/css/smartphone.css"]
         :js ["/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
              "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
@@ -59,7 +59,7 @@
 
  ;; 1ページあたりのポスト数
  ;;    デフォルト値: nil (ページネーション無効)
- :posts-per-page 1
+ :posts-per-page 10
 
  ;; 2ページ目以降のページ分けされたトップページのファイル名フォーマット
  ;;   デフォルト値: "page{{page}}/{{filename}}"
