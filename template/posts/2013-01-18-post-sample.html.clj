@@ -110,3 +110,5 @@ module Nendo
 
 
 RUBY
+
+(p "まだまだ調整が必要ですねぇ。WebDesignって楽しいけど難しいですね。")
