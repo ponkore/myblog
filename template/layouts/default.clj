@@ -51,21 +51,21 @@
 (defn hatena-bookmark-button
   [site]
   "hatena bookmark button"
-  [:div
+  (list 
    (link {:class "hatena-bookmark-button"
-          :data-hatena-bookmark-title (site :title)
+          :data-hatena-bookmark-title (:title site)
           :data-hatena-bookmark-layout "standard"
           :title "このエントリーをはてなブックマークに追加"}
-         (img {:alt "このエントリーをはてなブックマークに追加"
+         (img {:alt ""
                :width "20"
                :height "20"
                :style "border: none;"}
               "http://b.st-hatena.com/images/entry-button/button-only.gif")
-         (str "http://b.hatena.ne.jp/entry/" (:site-url site)))
+         (str "http://b.hatena.ne.jp/entry/" (:site-url site))) ;; TODO: this is my **BUG**!!
    [:script {:type "text/javascript"
              :src "http://b.st-hatena.com/js/bookmark_button.js"
              :charset "utf-8"
-             :async "async"}]])
+             :async "async"}]))
 
 ;;; social buttons
 (defn social-buttons
