@@ -17,6 +17,6 @@
     [:updated (date->xml-schema (:date post))]
     [:id (str (:base site) (:url post))]
     [:content {:type "html"}
-     (force (:lazy-content post) )
+     (force (:lazy-content post))
      ]])]
 
