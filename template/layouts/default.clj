@@ -148,18 +148,18 @@
  ;; header
  [:header {:class "ink-container"}
   [:div {:class "ink-vspace"}
-   [:h3 {:id "title"} (:site-title site)]
+   [:h3 {:id "title"} [:a {:href "/"} (:site-title site)]]
    ]]
 
  ;; menu
  [:nav {:class "ink-container ink-navigation"}
   [:ul {:class "horizontal menu"}
-   [:li {:class "active"}
-    [:a {:href "#"}
-     "Home"]]
    [:li
-    [:a {:href "#"}
-     "About me"]]
+    [:a {:href "/"} "Home"]]
+   [:li
+    [:a {:href "/archives.html"} "Archives"]]
+   [:li
+    [:a {:href "/about.html"} "About me"]]
    ]]
 
  ;; main container
@@ -172,4 +172,9 @@
    [:div {:style "float:right;"} (misaki-banner)]]]
 
  (js [(:js site ())])
+
+ ;; code prettify
+ (if (:enable-prettify (meta contents))
+   (js [(:js-prettify site ())]))
+
 ]
