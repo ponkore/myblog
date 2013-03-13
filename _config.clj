@@ -17,11 +17,10 @@
  :port 8080
 
  ;; site language
- ;;   default value: "en"
  :lang "ja"
 
  ;; default site data
- :site {:charset    "utf-8"
+ :site {:charset "utf-8"
         :site-title "(カッコの中の小人)"
         :site-subtitle "主にProgrammingなネタ集です。"
         :site-meta-description "This is @ponkore's blog"
@@ -29,22 +28,19 @@
         :site-url "http://ponkore.github.com"
         :twitter    "ponkore"
         :disqus-shortname "ponkoresblog"
-        :profile-text "Programmingが好きなおっさんSE。最近特にClojureがイイ。時折マイコンでも遊んでみたり。おっさんだけど人生まだこれからだ。"
         :css ["/css/sunburst.css"
               "http://css.ink.sapo.pt/v1/css/ink.css"
               "/css/main.css"]
-;        :device-css ["/css/smartphone.css"]
         :js ["/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
              "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
-             "/js/lang-clj.js"
-             "/js/lang-css.js"
-             "/js/lang-lisp.js"
-             "/js/lang-sql.js"
-             "/js/prettify.js"
-             "/js/script.js"
              "http://platform.tumblr.com/v1/share.js"
-             "http://embedtweet.com/javascripts/embed_v2.js"
-             ]
+             "http://embedtweet.com/javascripts/embed_v2.js"]
+        :js-prettify ["/js/lang-clj.js"
+                      "/js/lang-css.js"
+                      "/js/lang-lisp.js"
+                      "/js/lang-sql.js"
+                      "/js/prettify.js"
+                      "/js/script.js"]
         }
 
  ;; post file compile hook
@@ -95,11 +91,10 @@
                   }
 
  ;; flag for detailed log
- :detailed-log true;false
+ :detailed-log true
 
  ;; flag for error notification
  ;;   default value: false
- ;:notify? false
  :notify? true
 
  ;; notify setting(OPTIONAL)
