@@ -1,23 +1,24 @@
 ; @layout  default
 ; @title   post default title
+; @enable-prettify true
+
+;; page header
+[:div {:class "page-header"}
+ ;; post title
+ [:h2 (:title site)]
+ ;; post date
+ [:div {:class "tag-and-date"}
+  [:div {:class "date"} (-> site :date my-date->string)]]
+ ;; tags
+ [:nav {:class "ink-navigation"}
+  (post-tags :class "pills")]]
 
 [:article
- ;; page header
- [:div {:class "page-header"}
-  ;; title
-  [:h3 (link (:title site) "#")]
-  ;; post date and tags
-  [:div {:class "tag-and-date"}
-   [:p {:class "date"} (-> site :date my-date->string)] ; (post-date)
-   (post-tags)]]
-
  ;; contents
- [:div {:class "post"} contents]
+ [:div {:class "post ink-vspace"} contents]]
 
- ;; social buttons
- [:div {:class "clearfix"} (social-buttons site)]
+;; social buttons
+[:div {:class "clearfix"} (social-buttons site)]
 
- ;; disqus comment
- [:div {:class "clearfix"} (disqus-comment site)]
-
-]
+;; disqus comment
+[:div {:class "clearfix"} (disqus-comment site)]
