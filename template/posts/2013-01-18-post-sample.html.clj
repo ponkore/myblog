@@ -1,6 +1,7 @@
 ; @layout  post
 ; @title   いろんな言語でのサンプル(google code prettify のテスト)
 ; @summary misakiで google code prettify するパターンを書いてみます。
+; @tag programming web
 
 (p (:summary (meta contents)))
 
