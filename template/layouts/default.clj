@@ -12,13 +12,40 @@
   [date]
   (if date (.toString date "yyyy-MM-dd")))
 
+(defn p-hack
+  "ちょっとバグあり..."
+  [v]
+  (if (and (vector? v) (= :p (first v)))
+    (let [attr (filter map? (rest v))
+          contents (->> (remove map? (rest v)) (map first))]
+      (into [] (concat '(:p) attr contents)))
+    v))
+
+;;; experimental
+(defn cut-after-read-more
+  "引数の tree 構造の中にある :read-more 以前の要素 tree を返す。"
+  [sexp]
+  (letfn [(cut-after-read-more* [tree]
+            (let [tree (p-hack tree)]
+              (loop [[x & xs] tree result ()]
+                (let [[node search-continue] (if (sequential? x) (cut-after-read-more* x) [x (not= x :read-more)])
+                      tmp-arr (vec (concat result (list node)))]
+                  (if search-continue
+                    (if (empty? xs) [tmp-arr true] (recur xs tmp-arr))
+                    [tmp-arr false])))))]
+    (first (cut-after-read-more* sexp))))
+
 (defn my-post-list
   "Make default all posts unordered list."
   [site]
   (let [list-fn
-        #(list (str (my-date->string (:date %)) "&nbsp;-&nbsp;")
-               (link (:title %) (:url %)))]
-    (ul list-fn (:posts site))))
+        (fn [post]
+          (concat (str (my-date->string (:date post)) "&nbsp;-&nbsp;")
+                  (link (:title post) (:url post))
+                  (cut-after-read-more (force (:lazy-content-without-htmlize post)))))
+        ]
+    (ul list-fn (:posts site))
+    ))
 
 ;;; facebook button
 (defn facebook-like-button
