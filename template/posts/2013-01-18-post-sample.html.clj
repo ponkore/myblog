@@ -5,8 +5,6 @@
 
 (p (:summary (meta contents)))
 
-:read-more
-
 [:h3 "clojure"]
 #-CLJ
 ; CLJ
