@@ -20,7 +20,8 @@
  :lang "ja"
 
  ;; default site data
- :site {:charset "utf-8"
+ :site {:atom-base  "http://ponkore.github.io" ; please change "localhost:8080" to your blog domain
+        :charset "utf-8"
         :site-title "(カッコの中の小人)"
         :site-subtitle "主にProgrammingなネタ集です。"
         :site-meta-description "This is @ponkore's blog"
