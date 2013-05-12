@@ -52,21 +52,21 @@
 
  ;; post setting
  :post-filename-regexp #"(\d{4})[-_](\d{1,2})[-_](\d{1,2})[-_](.+)\.html.clj$"
- :post-filename-format "{{year}}-{{month}}/{{filename}}/index.html"
+ :post-filename-format "$(year)-$(month)/$(filename)/index.html"
 
  ;; 1ページあたりのポスト数
  ;;    デフォルト値: nil (ページネーション無効)
  :posts-per-page 10
 
  ;; 2ページ目以降のページ分けされたトップページのファイル名フォーマット
- ;;   デフォルト値: "page{{page}}/{{filename}}"
+ ;;   デフォルト値: "page$(page)/$(filename)"
  ;;   利用可能な変数:
  ;;     @page    : ページ番号(1..N)
  ;;     @filename: ファイル名
  ;;     @name    : 拡張子抜きのファイル名
  ;;     @ext     : 拡張子
- ;; :page-filename-format "page{{page}}/{{filename}}"
- :page-filename-format "pages/{{page}}/{{filename}}"
+ ;; :page-filename-format "page$(page)/$(filename)"
+ :page-filename-format "pages/$(page)/$(filename)"
 
  ;; post sort type (:date :name :title :date-desc :name-desc :title-desc)
  :post-sort-type :date-desc
@@ -100,13 +100,13 @@
 
  ;; notify setting(OPTIONAL)
  :notify-setting {;; title for fixing notification
-                  :fixed-title  "{{filename}}"
+                  :fixed-title  "$(filename)"
                   ;; message for fixing notication
                   :fixed        "FIXED"
                   ;; title for failing notification
-                  :failed-title "{{filename}} : {{line}}"
+                  :failed-title "$(filename) : $(line)"
                   ;; message for failing notification
-                  :failed       "{{message}}"}
+                  :failed       "$(message)"}
 
  ;; compiler setting
  :compiler "default"
