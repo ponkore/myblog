@@ -5,8 +5,7 @@
 ;; page header
 [:div {:class "page-header"}
  ;; post title
-; [:h2 (:title site)]
- [:h2 (link (:title site) (:url site))]
+ [:h2 [:a {:href (:url site)} (:title site)]]
  ;; post date
  [:div {:class "tag-and-date"}
   [:div {:class "date"} (-> site :date my-date->string)]]
