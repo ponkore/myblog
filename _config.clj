@@ -30,12 +30,13 @@
         :twitter    "ponkore"
         :disqus-shortname "ponkoresblog"
         :css ["/css/sunburst.css"
-              "http://css.ink.sapo.pt/v1/css/ink.css"
+              "http://cdn.ink.sapo.pt/2.2.1/css/ink-min.css"
               "/css/main.css"]
-        :js ["/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
+        :js [;; "/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
              "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
              "http://platform.tumblr.com/v1/share.js"
-             "http://embedtweet.com/javascripts/embed_v2.js"]
+             "http://embedtweet.com/javascripts/embed_v2.js"
+             ]
         :js-prettify ["/js/lang-clj.js"
                       "/js/lang-css.js"
                       "/js/lang-lisp.js"

@@ -72,16 +72,11 @@
 (defn social-buttons
   "define social buttons"
   [site]
-  [:div {:class "social-buttons"}
-   [:div {:class "social-buttons-btn"}
-    (hatena-bookmark-button site)]
-   [:div {:class "social-buttons-btn"}
-    (tumblr-share-button site)]
-   [:div {:class "social-buttons-btn"}
-    (tweet-button :lang "ja" :label "ツイート")]
-   [:div {:class "social-buttons-btn"}
-    (facebook-like-button site)]
-   ])
+  [:ul {:class "social-buttons"}
+   [:li (hatena-bookmark-button site)]
+   [:li (tumblr-share-button site)]
+   [:li (tweet-button :lang "ja" :label "ツイート")]
+   [:li (facebook-like-button site)]])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; disqus comment
@@ -164,32 +159,35 @@
 ]
 
 [:body
- ;; header
- [:header {:class "ink-container"}
-  [:div {:class "ink-vspace"}
-   [:h3 {:id "title"} [:a {:href "/"} (:site-title site)]]
+
+ [:div {:class "ink-grid"}
+  ;; header
+  [:header {:class "ink-grid"}
+   [:div {:class "vertical-space"}
+    [:h2 {:id "title"} [:a {:href "/"} (:site-title site)]]
+    ]]
+
+  ;; menu
+  [:nav {:class "ink-navigation"}
+   [:ul {:class "menu horizontal flat green"}
+    [:li
+     [:a {:href "/"} "Home"]]
+    [:li
+     [:a {:href "/archives.html"} "Archives"]]
+    [:li
+     [:a {:href "/about.html"} "About me"]]
    ]]
 
- ;; menu
- [:nav {:class "ink-container ink-navigation"}
-  [:ul {:class "horizontal menu"}
-   [:li
-    [:a {:href "/"} "Home"]]
-   [:li
-    [:a {:href "/archives.html"} "Archives"]]
-   [:li
-    [:a {:href "/about.html"} "About me"]]
-   ]]
+  ;; main container
+  [:div {:class "ink-grid vertical-space"}]
+  [:div {:class "ink-grid"}
+   contents ;; main contents
+   ]
 
- ;; main container
- [:div {:class "ink-container ink-vspace"}
-  contents ;; main contents
+  [:footer
+   [:div {:class "ink-grid" :style "float:right;"}
+    (misaki-banner)]]
   ]
-
- [:footer
-  [:div {:class "ink-container"}
-   [:div {:style "float:right;"} (misaki-banner)]]]
-
  (js [(:js site ())])
 
  ;; code prettify

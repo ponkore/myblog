@@ -11,14 +11,14 @@
   [:div {:class "date"} (-> site :date my-date->string)]]
  ;; tags
  [:nav {:class "ink-navigation"}
-  (post-tags :class "pills")]]
+  (ul #(link (:name %) (:url %)) {:class "pills"} (:tag site))]]
 
 [:article
  ;; contents
- [:div {:class "post ink-vspace"} contents]]
+ [:div {:class "post"} contents]]
 
 ;; social buttons
-[:div {:class "clearfix"} (social-buttons site)]
+[:div {:class "ink-grid"} (social-buttons site)]
 
 ;; disqus comment
-[:div {:class "clearfix"} (disqus-comment site)]
+[:div {:class "ink-grid"} (disqus-comment site)]
