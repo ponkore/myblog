@@ -169,7 +169,7 @@
 
   ;; menu
   [:nav {:class "ink-navigation"}
-   [:ul {:class "menu horizontal flat green"}
+   [:ul {:class "menu horizontal flat blue"}
     [:li
      [:a {:href "/"} "Home"]]
     [:li
@@ -180,14 +180,15 @@
 
   ;; main container
   [:div {:class "ink-grid vertical-space"}]
-  [:div {:class "ink-grid"}
-   contents ;; main contents
-   ]
+
+  contents ;; main contents
 
   [:footer
    [:div {:class "ink-grid" :style "float:right;"}
-    (misaki-banner)]]
-  ]
+    (misaki-banner)]]]
+
+ [:div {:class "ink-grid vertical-space"}]
+
  (js [(:js site ())])
 
  ;; code prettify

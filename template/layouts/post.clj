@@ -18,7 +18,12 @@
  [:div {:class "post"} contents]]
 
 ;; social buttons
-[:div {:class "ink-grid"} (social-buttons site)]
+(social-buttons site)
+
+[:div {:class "ink-grid vertical-space"}]
 
 ;; disqus comment
-[:div {:class "ink-grid"} (disqus-comment site)]
+(disqus-comment site)
+
+;; vertical space
+[:div {:class "ink-grid vertical-space"}]
