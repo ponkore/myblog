@@ -116,6 +116,9 @@
             }])
 ;; "<iframe src=\"http://www.slideshare.net/slideshow/embed_code/13782976\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px\" allowfullscreen> </iframe> <div style=\"margin-bottom:5px\"> <strong> <a href=\"http://www.slideshare.net/masa0kato/clojure-programmingchapter2-13782976\" title=\"Clojure programming-chapter-2\" target=\"_blank\">Clojure programming-chapter-2</a> </strong> from <strong><a href=\"http://www.slideshare.net/masa0kato\" target=\"_blank\">Masao Kato</a></strong> </div>"
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; img tag for Retina Display
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn img*2x
   "img tag for Retina display (iOS Device, MacBookPro)"
   ([src] (img*2x {} "" src))
@@ -134,6 +137,48 @@
                h (/ (.getHeight r) 2)
                attr (merge attr {:width w :height h})]
            (img attr alt src))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 日本語文字列を途中で改行したときにスペースを作らない
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn- compute-separator [s1 s2]
+  "改行を含まない文字列 s1、s2 を受け取り、
+s1の末尾文字とs2の先頭文字のどちらか全角であれば、empty文字列を返す。
+そうでなければ改行文字列を返す。"
+  (if (or (re-find #"[^\p{Graph}]$" s1) (re-find #"^[^\p{Graph}]" s2))
+    ""
+    "\n"))
+
+(defn- modify-line-separator
+  "文字列 s に含まれる改行文字の前後がともに全角文字であれば、その改行文字は消去し、
+そうでないなら改行文字はそのまま、とした文字列を返す。"
+  [s]
+  (let [lines (clojure.string/split-lines s)
+        line-separators (->> lines (partition 2 1) (map #(apply compute-separator %)))
+        line-separators (concat line-separators '(""))]
+    (->>
+     (interleave lines line-separators)
+     clojure.string/join)))
+
+(defn p*
+  "misaki における p の拡張。改行文字をよきにはからう。"
+  [s]
+  (p (modify-line-separator s)))
+
+;; TODO: option 指定できるようにする、複数の文字列を指定できるようにする
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; section, subsection 指定
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro section
+  ""
+  [& arg]
+  `[:h3 ~@arg])
+
+(defmacro subsection
+  ""
+  [& arg]
+  `[:h4 ~@arg])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Main layout starts here.
