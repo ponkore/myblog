@@ -29,7 +29,7 @@
         :site-url "http://ponkore.github.com"
         :twitter    "ponkore"
         :disqus-shortname "ponkoresblog"
-        :css ["/css/sunburst.css"
+        :css ["/css/tomorrow.css"
               "http://cdn.ink.sapo.pt/2.2.1/css/ink-min.css"
               "/css/main.css"]
         :js [;; "/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"
