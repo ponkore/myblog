@@ -36,6 +36,7 @@
              "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
              "http://platform.tumblr.com/v1/share.js"
              "http://embedtweet.com/javascripts/embed_v2.js"
+             "/js/retina-1.1.0.min.js"
              ]
         :js-prettify ["/js/lang-clj.js"
                       "/js/lang-css.js"
