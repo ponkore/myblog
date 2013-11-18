@@ -21,24 +21,24 @@
     (ul list-fn (:posts site))
     ))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; This URL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn this-url
+  [site]
+  (str (:site-url site) (-> (:file site) (misaki.compiler.default.config/make-post-url))))
+
 ;;; facebook button
 (defn facebook-like-button
   "facebook like button"
   [site]
-  (let [params ;; TODO: ぐだぐだなので、なんとかしなくちゃ
-        {"href" "http%3A%2F%2Fponkore.github.com%2Fi",
-         "layout" "standard",
-         "show_faces" "true",
-         "width" 300,
-         "action" "like",
-         "colorscheme" "light",
-         "height" 80}
-        param-str (clojure.string/join "&" (map (fn [[k v]] (str k "=" v)) params))]
-    [:iframe {:src (str "http://www.facebook.com/plugins/like.php?" param-str)
-              :scrolling "no"
-              :frameborder "0"
-              :style "border:none; overflow:hidden; height:41px;"
-              :allowTransparency "true"}]))
+  [:div {:id "fb-root"}]
+  [:div {:class "fb-like"
+         :data-href (this-url site)
+         :data-layout "button_count"
+         :data-show-faces "false"
+         :data-share "true"}
+   ])
 
 ;;; Tumblr+ ボタン
 (defn tumblr-share-button
@@ -62,7 +62,7 @@
                :height "20"
                :style "border: none;"}
               "http://b.st-hatena.com/images/entry-button/button-only.gif")
-         (str "http://b.hatena.ne.jp/entry/" (:site-url site))) ;; TODO: this is my **BUG**!!
+         (str "http://b.hatena.ne.jp/entry/" (this-url site)))
    [:script {:type "text/javascript"
              :src "http://b.st-hatena.com/js/bookmark_button.js"
              :charset "utf-8"
