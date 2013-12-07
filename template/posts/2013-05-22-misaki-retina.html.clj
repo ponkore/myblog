@@ -46,7 +46,7 @@ image のサイズを調べて、実際の半分の大きさの width、height �
       (map? x)    (img*2x x "" src)
       :else       (img*2x {} "" src)))
   ([attr alt src]
-     (let [public-dir (:public-dir misaki.config／*config*)
+     (let [public-dir (:public-dir misaki.config/*config*)
            f (java.io.File. (str public-dir src))]
        (if-not (.exists f)
          (img "/img/notfound.png")
