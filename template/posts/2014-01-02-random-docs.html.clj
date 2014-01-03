@@ -1,6 +1,6 @@
 ; @layout  post
 ; @title   random-docs (2014年最初の記事)
-; @summary
+; @tag clojure
 
 ;;
 ;;
