@@ -1,6 +1,6 @@
 ; @layout  post
 ; @title   Raspberry PI 買ったったー
-; @tag hardware
+; @tag hardware raspberry-pi
 
 ;;
 ;;
