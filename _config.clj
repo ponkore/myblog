@@ -77,15 +77,15 @@
  ;       :pretty-print  true}
 
  ;; highlight setting
- :code-highlight {:CLJ     "lang-clj"
-                  :CLOJURE "lang-clj"
-                  :LISP    "lang-lisp"
-                  :SQL     "lang-sql"
-                  :CSS     "lang-css"
-                  :JAVA    "lang-java"
-                  :HTML    "lang-html"
-                  :RUBY    "lang-ruby"
-                  :SH      "lang-sh"
+ :code-highlight {:CLJ     "clojure"
+                  :CLOJURE "clojure"
+                  :LISP    "lisp"
+                  :SQL     "sql"
+                  :CSS     "css"
+                  :JAVA    "java"
+                  :HTML    "html"
+                  :RUBY    "ruby"
+                  :SH      "bash"
                   }
 
  ;; flag for detailed log
