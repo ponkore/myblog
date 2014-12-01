@@ -26,15 +26,14 @@
         :site-subtitle "主にProgrammingなネタ集です。"
         :site-meta-description "This is @ponkore's blog"
         :site-meta-author "@ponkore"
-        :site-url "http://ponkore.github.com"
+        :site-url "http://ponkore.github.io"
         :twitter    "ponkore"
         :disqus-shortname "ponkoresblog"
         :css ["/css/github.css"
-              "http://cdn.ink.sapo.pt/2.2.1/css/ink-min.css"
+              "http://fastly.ink.sapo.pt/3.1.1/css/ink.css"
               "/css/main.css"]
         :js ["//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
-             "http://platform.tumblr.com/v1/share.js"
-             "http://embedtweet.com/javascripts/embed_v2.js"
+             "http://fastly.ink.sapo.pt/3.1.1/js/ink-all.js"
              "/js/retina-1.1.0.min.js"
              ]
         :js-prettify ["/js/script.js"
