@@ -52,7 +52,7 @@
 (defn hatena-bookmark-button
   [site]
   "hatena bookmark button"
-  (list 
+  (list
    (link {:class "hatena-bookmark-button"
           :data-hatena-bookmark-title (:title site)
           :data-hatena-bookmark-layout "standard"
