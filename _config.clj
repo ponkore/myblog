@@ -34,10 +34,10 @@
               "/css/main.css"]
         :js ["//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
              "http://fastly.ink.sapo.pt/3.1.1/js/ink-all.js"
-             "/js/retina-1.1.0.min.js"
-             ]
+             "/js/retina-1.1.0.min.js"]
         :js-prettify ["/js/script.js"
                       "/js/highlight.pack.js"]
+        :cljs ["js/cljs-main.js"]
         }
 
  ;; post file compile hook
@@ -70,10 +70,13 @@
  ;; clojurescript compile options
  ;; src-dir base is `:template-dir`
  ;; output-dir base is `:public-dir`
- ;:cljs {:src-dir       "cljs"
- ;       :output-to     "js/main.js"
- ;       :optimizations :simple
- ;       :pretty-print  true}
+ :cljs {:src-dir       "cljs"
+        :output-to     "js/cljs-main.js"
+        ;; :optimizations :simple
+        ;; :pretty-print  true
+        :optimizations :advanced
+        :pretty-print  false
+        }
 
  ;; highlight setting
  :code-highlight {:CLJ     "clojure"
@@ -105,5 +108,5 @@
                   :failed       "$(message)"}
 
  ;; compiler setting
- :compiler "default"
+ :compiler ["default" "cljs"]
 }
