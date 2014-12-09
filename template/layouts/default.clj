@@ -18,8 +18,7 @@
   (let [list-fn
         #(list (str (my-date->string (:date %)) "&nbsp;-&nbsp;")
                (link (:title %) (:url %)))]
-    (ul list-fn (:posts site))
-    ))
+    (ul list-fn (:posts site))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; This URL
@@ -117,28 +116,6 @@
 ;; "<iframe src=\"http://www.slideshare.net/slideshow/embed_code/13782976\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px\" allowfullscreen> </iframe> <div style=\"margin-bottom:5px\"> <strong> <a href=\"http://www.slideshare.net/masa0kato/clojure-programmingchapter2-13782976\" title=\"Clojure programming-chapter-2\" target=\"_blank\">Clojure programming-chapter-2</a> </strong> from <strong><a href=\"http://www.slideshare.net/masa0kato\" target=\"_blank\">Masao Kato</a></strong> </div>"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; img tag for Retina Display
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn img*2x
-  "img tag for Retina display (iOS Device, MacBookPro)"
-  ([src] (img*2x {} "" src))
-  ([x src]
-     (cond
-      (string? x) (img*2x {} x src)
-      (map? x)    (img*2x x "" src)
-      :else       (img*2x {} "" src)))
-  ([attr alt src]
-     (let [public-dir (:public-dir misaki.config/*config*)
-           f (java.io.File. (str public-dir src))]
-       (if-not (.exists f)
-         (img "/img/notfound.png")
-         (let [r (javax.imageio.ImageIO/read f)
-               w (/ (.getWidth r) 2)
-               h (/ (.getHeight r) 2)
-               attr (merge attr {:width w :height h})]
-           (img attr alt src))))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 日本語文字列を途中で改行したときにスペースを作らない
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn- compute-separator [s1 s2]
@@ -234,10 +211,10 @@ s1の末尾文字とs2の先頭文字のどちらか全角であれば、empty�
 
  [:div {:class "ink-grid vertical-space"}]
 
- (js [(:js site ())])
+ (js (:js site))
 
  ;; code prettify
  (if (:enable-prettify (meta contents))
-   (js [(:js-prettify site ())]))
+   (js (:js-prettify site)))
 
 ]
